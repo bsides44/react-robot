@@ -1,16 +1,6 @@
 import React, { Component } from "react";
 
-class Counter extends Component {
-  // state = {
-  //   count: this.props.counter.value,
-  //   tags: ["party", "moparty", "bullshit"]
-  // };
-
-  //   constructor() {
-  //     super();
-  //     this.incrementButton = this.incrementButton.bind(this);
-  //   }
-
+class Body extends Component {
   styles = {
     fontSize: 19,
     fontWeight: "light",
@@ -24,21 +14,21 @@ class Counter extends Component {
           {this.formatCount()}
         </span> */}
         <button
-          onClick={() => this.props.onNextHead(this.props.counter)}
+          onClick={() => this.props.onNextBody(this.props.counter)}
           className="btn btn-primary btn-sm m-2"
         >
           YAY
         </button>
         <span className="m-3">
           <img
-            src={this.props.counter.head}
-            width="200"
+            src={this.props.counter.body}
+            width="300"
             height="200"
             className="d-inline-block align-top"
           />
         </span>
         <button
-          onClick={() => this.props.onLastHead(this.props.counter)}
+          onClick={() => this.props.onLastBody(this.props.counter)}
           className="btn btn-primary btn-sm m-2"
         >
           HA
@@ -52,17 +42,6 @@ class Counter extends Component {
       </React.Fragment>
     );
   }
-
-  // changeBadgeColour() {
-  //   let classes = "badge m-2 badge-";
-  //   classes += this.props.counter.value === 0 ? "warning" : "primary";
-  //   return classes;
-  // }
-
-  // formatCount() {
-  //   const { value } = this.props.counter;
-  //   return value === 0 ? "Zero" : value;
-  // }
 }
 
-export default Counter;
+export default Body;

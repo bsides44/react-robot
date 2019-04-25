@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Counter extends Component {
+class Feet extends Component {
   // state = {
   //   count: this.props.counter.value,
   //   tags: ["party", "moparty", "bullshit"]
@@ -24,21 +24,22 @@ class Counter extends Component {
           {this.formatCount()}
         </span> */}
         <button
-          onClick={() => this.props.onNextHead(this.props.counter)}
+          onClick={() => this.props.onNextFeet(this.props.counter)}
           className="btn btn-primary btn-sm m-2"
         >
           YAY
         </button>
         <span className="m-3">
           <img
-            src={this.props.counter.head}
+            src={this.props.counter.feet}
             width="200"
             height="200"
             className="d-inline-block align-top"
+            alt=""
           />
         </span>
         <button
-          onClick={() => this.props.onLastHead(this.props.counter)}
+          onClick={() => this.props.onLastFeet(this.props.counter)}
           className="btn btn-primary btn-sm m-2"
         >
           HA
@@ -52,17 +53,6 @@ class Counter extends Component {
       </React.Fragment>
     );
   }
-
-  // changeBadgeColour() {
-  //   let classes = "badge m-2 badge-";
-  //   classes += this.props.counter.value === 0 ? "warning" : "primary";
-  //   return classes;
-  // }
-
-  // formatCount() {
-  //   const { value } = this.props.counter;
-  //   return value === 0 ? "Zero" : value;
-  // }
 }
 
-export default Counter;
+export default Feet;

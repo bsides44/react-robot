@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Counter from "./counter";
+import Body from "./body";
+import Feet from "./feet";
 
 class Counters extends Component {
   render() {
@@ -8,8 +10,12 @@ class Counters extends Component {
       onRefresh,
       counters,
       onDelete,
-      onNext,
-      onLast
+      onNextHead,
+      onLastHead,
+      onNextBody,
+      onLastBody,
+      onNextFeet,
+      onLastFeet
     } = this.props;
 
     return (
@@ -27,8 +33,24 @@ class Counters extends Component {
               // key={counter.id}
               onDelete={onDelete}
               counter={counter}
-              onNext={onNext}
-              onLast={onLast}
+              onNextHead={onNextHead}
+              onLastHead={onLastHead}
+            />
+            <br />
+            <Body
+              // key={counter.id}
+              onDelete={onDelete}
+              counter={counter}
+              onNextBody={onNextBody}
+              onLastBody={onLastBody}
+            />
+
+            <Feet
+              // key={counter.id}
+              onDelete={onDelete}
+              counter={counter}
+              onNextFeet={onNextFeet}
+              onLastFeet={onLastFeet}
             />
             <br />
           </span>

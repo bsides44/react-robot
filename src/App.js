@@ -86,7 +86,7 @@ class App extends Component {
   //   });
   // };
 
-  NextButton = () => {
+  NextHeadButton = () => {
     const heads = [...this.state.heads];
     let index = [this.state.index];
     index++;
@@ -99,12 +99,64 @@ class App extends Component {
     });
   };
 
-  LastButton = counter => {
+  LastHeadButton = counter => {
     const heads = [...this.state.heads];
     let index = [this.state.index];
     index--;
     let counters = [...this.state.counters];
     counters[0].head = heads[index];
+
+    this.setState({
+      counters,
+      index
+    });
+  };
+
+  NextBodyButton = () => {
+    const bodies = [...this.state.bodies];
+    let index = [this.state.index];
+    index++;
+    let counters = [...this.state.counters];
+    counters[0].body = bodies[index];
+
+    this.setState({
+      counters,
+      index
+    });
+  };
+
+  LastBodyButton = counter => {
+    const bodies = [...this.state.bodies];
+    let index = [this.state.index];
+    index--;
+    let counters = [...this.state.counters];
+    counters[0].body = bodies[index];
+
+    this.setState({
+      counters,
+      index
+    });
+  };
+
+  NextFeetButton = () => {
+    const feet = [...this.state.feet];
+    let index = [this.state.index];
+    index++;
+    let counters = [...this.state.counters];
+    counters[0].feet = feet[index];
+
+    this.setState({
+      counters,
+      index
+    });
+  };
+
+  LastFeetButton = counter => {
+    const feet = [...this.state.feet];
+    let index = [this.state.index];
+    index--;
+    let counters = [...this.state.counters];
+    counters[0].feet = feet[index];
 
     this.setState({
       counters,
@@ -130,8 +182,12 @@ class App extends Component {
             onReset={this.handleReset}
             onRefresh={this.handleRefresh}
             onDelete={this.handleDelete}
-            onNext={this.NextButton}
-            onLast={this.LastButton}
+            onNextHead={this.NextHeadButton}
+            onLastHead={this.LastHeadButton}
+            onNextBody={this.NextBodyButton}
+            onLastBody={this.LastBodyButton}
+            onNextFeet={this.NextFeetButton}
+            onLastFeet={this.LastFeetButton}
           />
         </main>
       </React.Fragment>
