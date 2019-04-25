@@ -27,7 +27,7 @@ class Counter extends Component {
           onClick={() => this.props.onNextHead(this.props.counter)}
           className="btn btn-primary btn-sm m-2"
         >
-          YAY
+          LAST
         </button>
         <span className="m-3">
           <img
@@ -41,7 +41,7 @@ class Counter extends Component {
           onClick={() => this.props.onLastHead(this.props.counter)}
           className="btn btn-primary btn-sm m-2"
         >
-          HA
+          NEXT
         </button>
         {/* <button
           onClick={() => this.props.onDelete(this.props.counter.id)}
