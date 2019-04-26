@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import NavBar from "./components/navbar";
+import splat from "./sound/splat.mp3";
+import swipe from "./sound/swipe.mp3";
+import yay from "./sound/yay.mp3";
+import horn from "./sound/horn.mp3";
 import Counters from "./components/counters";
 import "./App.css";
 import h1 from "./img/heads/h1.png";
@@ -47,8 +50,6 @@ import f12 from "./img/feet/f12.png";
 import f13 from "./img/feet/f13.png";
 import f14 from "./img/feet/f14.png";
 import f15 from "./img/feet/f15.png";
-import { debug } from "util";
-import { regExpLiteral } from "@babel/types";
 
 class App extends Component {
   state = {
@@ -135,16 +136,20 @@ class App extends Component {
     let feetCapture = counters[0].feet;
     let feetLetters = feetCapture.split("f");
     let feetNumber = feetLetters[1].split(".", 1);
-    console.log(headNumber[0], bodyNumber[0], feetNumber[0]);
-    if (headNumber[0] == bodyNumber[0] && bodyNumber[0] == feetNumber[0]) {
+    if (headNumber[0] === bodyNumber[0] && bodyNumber[0] === feetNumber[0]) {
       this.changeBackgroundColour();
-      console.log("yay");
     } else {
       this.changeColourBack();
     }
   }
 
   changeBackgroundColour() {
+    let audio = new Audio(yay);
+    //attribution: 1 person cheering by Jett Rifkin http://soundbible.com/2103-1-Person-Cheering.html
+    audio.play();
+    let audio2 = new Audio(horn);
+    //atribution: Ta Da by Mike Koenig http://soundbible.com/1003-Ta-Da.html
+    audio2.play();
     let colour = "orange";
     this.setState({
       colour
@@ -156,18 +161,11 @@ class App extends Component {
       colour
     });
   }
-  // changeBadgeColour() {
-  //   let classes = "badge m-2 badge-";
-  //   classes += this.props.counter.value === 0 ? "warning" : "primary";
-  //   return classes;
-  // }
-
-  // styles = {
-  //   fontSize: 15,
-  //   fontWeight: "light"
-  // };
 
   NextHeadButton = () => {
+    let audio = new Audio(swipe);
+    //attribution: http://soundbible.com/706-Swoosh-3.html
+    audio.play();
     const heads = [...this.state.heads];
     let index = [this.state.index];
     index++;
@@ -187,6 +185,8 @@ class App extends Component {
   };
 
   LastHeadButton = counter => {
+    let audio = new Audio(swipe);
+    audio.play();
     const heads = [...this.state.heads];
     let index = [this.state.index];
     index--;
@@ -206,6 +206,8 @@ class App extends Component {
   };
 
   NextBodyButton = () => {
+    let audio = new Audio(swipe);
+    audio.play();
     const bodies = [...this.state.bodies];
     let index = [this.state.index];
     index++;
@@ -225,6 +227,8 @@ class App extends Component {
   };
 
   LastBodyButton = counter => {
+    let audio = new Audio(swipe);
+    audio.play();
     const bodies = [...this.state.bodies];
     let index = [this.state.index];
     index--;
@@ -244,6 +248,8 @@ class App extends Component {
   };
 
   NextFeetButton = () => {
+    let audio = new Audio(swipe);
+    audio.play();
     const feet = [...this.state.feet];
     let index = [this.state.index];
     index++;
@@ -263,6 +269,8 @@ class App extends Component {
   };
 
   LastFeetButton = () => {
+    let audio = new Audio(swipe);
+    audio.play();
     const feet = [...this.state.feet];
     let index = [this.state.index];
     index--;
@@ -282,6 +290,9 @@ class App extends Component {
   };
 
   onRandom = () => {
+    let audio = new Audio(splat);
+    //attribution: Slime Splash by Mike Koenig http://soundbible.com/1097-Slime-Splash.html
+    audio.play();
     const heads = [...this.state.heads];
     const headIndex = Math.floor(Math.random() * heads.length + 0);
     const bodies = [...this.state.bodies];
