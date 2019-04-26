@@ -48,6 +48,7 @@ import f13 from "./img/feet/f13.png";
 import f14 from "./img/feet/f14.png";
 import f15 from "./img/feet/f15.png";
 import { debug } from "util";
+import { regExpLiteral } from "@babel/types";
 
 class App extends Component {
   state = {
@@ -55,12 +56,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // const originalState = [...this.state.counters];
-    // this.setState({
-    //   ...this.state.counters,
-    //   originalState
-    // });
-    // this.handleRefresh(originalState);
     const heads = [
       h1,
       h2,
@@ -112,6 +107,7 @@ class App extends Component {
       f14,
       f15
     ];
+    let colour = "yellow";
     let index = Math.floor(Math.random() * heads.length + 0);
     let counters = [...this.state.counters];
     counters[0].head = heads[index];
@@ -123,52 +119,52 @@ class App extends Component {
       index,
       heads,
       bodies,
-      feet
+      feet,
+      colour
     });
   }
+
+  checkState() {
+    let counters = [...this.state.counters];
+    let headCapture = counters[0].head;
+    let headLetters = headCapture.split("h");
+    let headNumber = headLetters[1].split(".", 1);
+    let bodyCapture = counters[0].body;
+    let bodyLetters = bodyCapture.split("b");
+    let bodyNumber = bodyLetters[1].split(".", 1);
+    let feetCapture = counters[0].feet;
+    let feetLetters = feetCapture.split("f");
+    let feetNumber = feetLetters[1].split(".", 1);
+    console.log(headNumber[0], bodyNumber[0], feetNumber[0]);
+    if (headNumber[0] == bodyNumber[0] && bodyNumber[0] == feetNumber[0]) {
+      this.changeBackgroundColour();
+      console.log("yay");
+    } else {
+      this.changeColourBack();
+    }
+  }
+
+  changeBackgroundColour() {
+    let colour = "orange";
+    this.setState({
+      colour
+    });
+  }
+  changeColourBack() {
+    let colour = "yellow";
+    this.setState({
+      colour
+    });
+  }
+  // changeBadgeColour() {
+  //   let classes = "badge m-2 badge-";
+  //   classes += this.props.counter.value === 0 ? "warning" : "primary";
+  //   return classes;
+  // }
 
   // styles = {
   //   fontSize: 15,
   //   fontWeight: "light"
-  // };
-
-  // handleDelete = counterID => {
-  //   const counters = this.state.counters.filter(c => c.id !== counterID);
-  //   this.setState({
-  //     counters
-  //   });
-  // };
-
-  // handleReset = () => {
-  //   {
-  //     const counters = this.state.counters.map(c => {
-  //       c.value = 0;
-  //       return c;
-  //     });
-
-  //     this.setState({
-  //       counters
-  //     });
-  //   }
-  // };
-
-  // handleRefresh = () => {
-  //   const counters = this.state.originalState;
-  //   this.setState({
-  //     counters
-  //   });
-  // };
-
-  // NextButton = counter => {
-  //   // console.log(this.state.counters.h1);
-  //   const counters = [...this.state.counters];
-  //   const index = counters.indexOf(counter);
-  //   counters[index] = { ...counter };
-  //   counters[index].value++;
-
-  //   this.setState({
-  //     counters
-  //   });
   // };
 
   NextHeadButton = () => {
@@ -183,7 +179,7 @@ class App extends Component {
     }
     let counters = [...this.state.counters];
     counters[0].head = heads[index];
-
+    this.checkState();
     this.setState({
       counters,
       index
@@ -202,7 +198,7 @@ class App extends Component {
     }
     let counters = [...this.state.counters];
     counters[0].head = heads[index];
-
+    this.checkState();
     this.setState({
       counters,
       index
@@ -221,7 +217,7 @@ class App extends Component {
     }
     let counters = [...this.state.counters];
     counters[0].body = bodies[index];
-
+    this.checkState();
     this.setState({
       counters,
       index
@@ -240,7 +236,7 @@ class App extends Component {
     }
     let counters = [...this.state.counters];
     counters[0].body = bodies[index];
-
+    this.checkState();
     this.setState({
       counters,
       index
@@ -259,6 +255,7 @@ class App extends Component {
     }
     let counters = [...this.state.counters];
     counters[0].feet = feet[index];
+    this.checkState();
     this.setState({
       counters,
       index
@@ -277,6 +274,7 @@ class App extends Component {
     }
     let counters = [...this.state.counters];
     counters[0].feet = feet[index];
+    this.checkState();
     this.setState({
       counters,
       index
@@ -294,7 +292,7 @@ class App extends Component {
     counters[0].head = heads[headIndex];
     counters[0].body = bodies[bodyIndex];
     counters[0].feet = feet[feetIndex];
-
+    this.checkState();
     this.setState({
       counters
     });
@@ -303,7 +301,11 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <main className="container" align="center">
+        <main
+          style={{ backgroundColor: this.state.colour }}
+          className="container"
+          align="center"
+        >
           <button
             onClick={this.onRandom}
             className="btn btn-danger btn-lrg m-4"

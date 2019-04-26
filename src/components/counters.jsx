@@ -44,7 +44,7 @@ class Counters extends Component {
               onNextBody={onNextBody}
               onLastBody={onLastBody}
             />
-
+            <br />
             <Feet
               // key={counter.id}
               onDelete={onDelete}
